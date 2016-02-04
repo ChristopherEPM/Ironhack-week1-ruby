@@ -82,7 +82,7 @@ arr =[
 
 # inventory = CarDealer.new(car_list) 
 
-#modelo porfesor
+#modelo 1 porfesor solucion CarDealer con inventory modelado como un Array
 
 #si no tubiera valor le mete array , si lo tiene se queda como esta. operador "orequal" ||=.
         #a =17
@@ -91,36 +91,40 @@ arr =[
         # a=nil
         # a ||=23
         # a=23
-class CarDealer
-
-  def initialize(inventory)
-    @inventory = inventory
-  end
-
-  def cars(brand)
-    @inventory.select { |car| car[:brand].downcase == brand.downcase }
-  end
-
-  def pretty_print_inventory
-      pretty_print_inventory = {}
-      @inventory.each do |car|
-        brand = car [:brand].downcase
-        pretty_print_inventory[brand] ||= [] #si ya tenemos una key con ese brand lo dejamos.. sino creamos array
-        pretty_print_inventory[brand] << car [:model].downcase.capitalize
-        end
-      pretty_print_inventory.each do |brand,models|
-        puts "#{brand.capitalize}: #{models.join(", ")}"
-      end
-  end
-
-end
-
-inventory = [
-  {brand: "Ford", moled: "fiesta", year: 2010, license: "ASKA123"},
-  {brand: "Ford", moled: "Mustang", year: 2011, license: "AUHF123"},
-  {brand: "Tesla", moled: "S", year: 2014, license: "EGDA123"},
-  {brand: "Mini", moled: "Coope", year: 2011, license: "ASDA123"},
-]
-car_dealer = CarDealer.new(inventory)
-puts car_dealer.cars("Ford").inspect
-puts car_dealer.pretty_print_inventory
+# class CarDealer
+#   def initialize(inventory)
+#     @inventory = inventory
+#   end
+# ​
+#   def cars(brand)
+#     @inventory.select { |car| car[:brand].downcase == brand.downcase }
+#   end
+# ​
+#   def pretty_print_inventory
+#     pretty_print_inventory = {}
+#     @inventory.each do |car|
+#       brand = car[:brand].downcase
+#       pretty_print_inventory[brand] ||= []
+#       pretty_print_inventory[brand] << car[:model].downcase.capitalize
+#     end
+# ​
+#     pretty_print_inventory.each do |brand, models|
+#       puts "#{brand}: #{models.join(", ")}"
+#     end
+#   end
+# ​
+# end
+# ​
+# ​
+# inventory = [
+#   { brand: "Ford",  model: "fiesta",  year: 2010,  license: "ASD123" },
+#   { brand: "Ford",  model: "mustang", year: 2011,  license: "OKD123" },
+#   { brand: "Tesla", model: "S",       year: 2014,  license: "FYS123" },
+#   { brand: "Mini",  model: "Cooper",  year: 2011,  license: "WQA123" },
+# ]
+# ​
+# car_dealer = CarDealer.new(inventory)
+# puts car_dealer.cars("Ford").inspect
+# puts car_dealer.pretty_print_inventory
+#-------------#
+#modelo 2  profresor solucion CarDealer con inventory modelado como un Hash

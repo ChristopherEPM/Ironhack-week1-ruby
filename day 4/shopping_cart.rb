@@ -6,7 +6,7 @@ class ShoppingCart
       @final_total_cost = 0
       @item_list = []
       @final_list_price = {}
-      time = Time.now
+      @time = Time.now
     if time.month == 3 || time.month ==  4 ||  time.month == 5
         @precio_frutas = { :apple => 10, :orange => 5, :grape => 15, :banana => 20, :watermelon => 50 } 
     elsif time.month ==  6 || time.month ==  7 || time.month ==  8
@@ -60,10 +60,12 @@ class ShoppingCart
         if element == :apple && @item_unit_counts[element] >= 2
           @final_list_price[element] = ((@item_unit_counts[element] - @item_unit_counts[element]/2) * @precio_frutas[element])
         elsif element == :orange && @item_unit_counts[element] >= 3
-          @final_list_price[element] = ((@item_unit_counts[element] - @item_unit_counts[element]/3) * @precio_frutas[element])
+          @final_list_price[element] = ((@item_unit_counts[element] - @final_list_price[element]/3) * @precio_frutas[element])
           #binding.pry
         elsif element == :grape && @item_unit_counts[element] >= 4
           @item_unit_counts[:banana] += @item_unit_counts[element]/4 
+        elsif @time.wday == 0 && element == :watermelon
+          @final_list_price[element] = @item_unit_counts[element] * (@precio_frutas[element]*2)
         end 
     end
     show
@@ -92,7 +94,7 @@ cart.add_item_to_cart :orange
 cart.add_item_to_cart :orange
 cart.add_item_to_cart :orange
 cart.add_item_to_cart :orange
-
+cart.add_item_to_cart :watermelon
 cart.count
 cart.items_total_price
 cart.show
